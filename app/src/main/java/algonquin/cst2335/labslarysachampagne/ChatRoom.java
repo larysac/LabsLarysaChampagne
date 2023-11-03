@@ -37,6 +37,9 @@ public class ChatRoom extends AppCompatActivity {
                 return 0;
             }
         });
+
+
+
     }
     class MyRowHolder extends RecyclerView.ViewHolder {
         public MyRowHolder(@NonNull View itemView) {
