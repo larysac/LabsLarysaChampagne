@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,14 +34,16 @@ public class ChatRoom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding = ActivityChatRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        // Initialize the model.
         chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
-        messages = chatModel.messages.getValue();
 
-        if (messages == null) {
-            chatModel.messages.postValue(messages = new ArrayList<>());
+        // Review
+        messages = chatModel.messages.getValue();
+        if(messages == null){
+            chatModel.messages.postValue( messages = new ArrayList<>());
         }
 
 
@@ -49,8 +52,9 @@ public class ChatRoom extends AppCompatActivity {
 
 
 
+
         binding.sendButton.setOnClickListener(click -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
             String currentDateandTime = sdf.format(new Date());
             String text = binding.textinput.getText().toString();
             ChatMessage sendMessage = new ChatMessage(text, currentDateandTime, true);
@@ -64,7 +68,7 @@ public class ChatRoom extends AppCompatActivity {
 
 
             binding.receiveButton.setOnClickListener(click -> {
-                SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
                 String currentDateandTime = sdf.format(new Date());
                 String receiveText = binding.textinput.getText().toString();
                 ChatMessage receiveMessage = new ChatMessage(receiveText, currentDateandTime, false);
