@@ -1,7 +1,7 @@
 package algonquin.cst2335.labslarysachampagne;public class ChatMessage {
-    private String message;
-    private String timeSent;
-    private boolean isSentButton;
+    private final String message;
+    private final String timeSent;
+    private final boolean isSentButton;
 
 
     public ChatMessage(String m, String t, boolean sent) {
